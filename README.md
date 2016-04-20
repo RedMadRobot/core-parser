@@ -5,7 +5,7 @@
 Для установки добавьте следующую строку в podfile
 
 ```ruby
-pod 'CoreParser', :git => "http://git.redmadrobot.com/foundation-iOS/Parser.git"
+pod 'CoreParser', :git => "git@git.redmadrobot.com:foundation-ios/Parser.git"
 ```
 
 ## Author

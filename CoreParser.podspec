@@ -8,16 +8,14 @@
 
 Pod::Spec.new do |s|
   s.name             = "CoreParser"
-  s.version          = "0.1.0"
+  s.version          = "1.0.0"
   s.summary          = "CoreParser"
 
-  s.description      = <<-DESC
-                       DESC
+  s.description      = "Библиотека распознавания серверной выдачи"
 
   s.license          = 'MIT'
   s.author           = { "Anton Poderechin" => "ap@redmadrobot.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/CoreParser.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "git@git.redmadrobot.com:foundation-ios/Parser.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
