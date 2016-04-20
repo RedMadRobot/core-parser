@@ -1,0 +1,14 @@
+PODS:
+  - CoreParser (0.1.0)
+
+DEPENDENCIES:
+  - CoreParser (from `../`)
+
+EXTERNAL SOURCES:
+  CoreParser:
+    :path: ../
+
+SPEC CHECKSUMS:
+  CoreParser: 8922cb698fcee96f9a3380b14cc2106af8a997e5
+
+COCOAPODS: 0.39.0
