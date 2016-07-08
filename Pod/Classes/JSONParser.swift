@@ -40,12 +40,15 @@ public class JSONParser<Model>: Parser<Model> {
     
     public override func parse(body body: Any) -> [Model]
     {
-        guard let dictionary = body as? [String : AnyObject]
-        else {
-            return []
+        if let dictionary = body as? [String : AnyObject] {
+            return self.parse(dictionary: dictionary)
         }
         
-        return self.parse(dictionary: dictionary)
+        if let json = body as? JSON {
+            return self.parse(json: json)
+        }
+        
+        return []
     }
     
     public func fulfill(object: Model, json: NSDictionary) -> Model
