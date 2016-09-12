@@ -22,5 +22,9 @@ class Account: Model {
     
     var legsCount: Int = 0
     
-    var legsLength: Float = 0.0
+    var legsLength: Double = 0.0
+    
+    var internalName: String = ""
+    
+    var isSmth = false
 }

@@ -8,27 +8,21 @@
 
 import Foundation
 import CoreParser
-import SwiftyJSON
 
 
 class AccountParser: JSONParser<Account> {
     
-    //MARK: JSONParser
-    
-    init()
-    {
-        super.init(fulfiller: nil)
-    }
-    
-    override func parseObject(data: [String : JSON]) -> Account?
+    override func parseObject(_ data: JSON) -> Account?
     {
         guard
             let entityId = data["id"]?.string,
             let name = data["name"]?.string,
             let legsCount = data["legs_count"]?.int,
-            let legsLength = data["legs_length"]?.float
+            let legsLength = data["legs_length"]?.double,
+            let internalName = data["internal"]["name"]?.string,
+            let smth = data["is_smth"]?.bool
         else {
-            return nil;
+            return nil
         }
         
         let object = Account()
@@ -36,6 +30,8 @@ class AccountParser: JSONParser<Account> {
         object.name = name
         object.legsCount = legsCount
         object.legsLength = legsLength
+        object.internalName = internalName
+        object.isSmth = smth
         
         return object
     }

@@ -10,80 +10,155 @@ import Foundation
 
 
 /**
- Реализация парсера на SwiftyJSON.
+ Реализация JSON парсера.
  */
-public class JSONParser<Model>: Parser<Model> {
+open class JSONParser<Model>: Parser<Model> {
     
-    var fulfiller: Fulfiller<Model>?
-
-    // MARK: Public
-    // MARK: Abstract
+    // MARK: - Абстрактные методы
     
-    /* abstract */ public func parseObject(data: [String : JSON]) -> Model?
+    /* abstract */ open func parseObject(_ data: JSON) -> Model?
     {
-        preconditionFailure("Необходимо переопределить метод Parser.parseObject")
+        preconditionFailure("Необходимо переопределить метод Parser.parseObject()")
     }
     
-    // MARK: Constructor
     
-    public convenience override init()
-    {
-        self.init(fulfiller: nil)
-    }
+    // MARK: - Конструктор
     
-    public init(fulfiller: Fulfiller<Model>?)
-    {
-        self.fulfiller = fulfiller
-    }
+    override public init() {}
     
-    // MARK: Parser
     
-    public override func parse(body body: Any) -> [Model]
-    {
-        if let dictionary = body as? [String : AnyObject] {
-            return self.parse(dictionary: dictionary)
-        }
-        
-        if let json = body as? JSON {
-            return self.parse(json: json)
-        }
-        
-        return []
-    }
+    // MARK: - Parser
     
-    public func fulfill(object: Model, json: NSDictionary) -> Model
-    {
-        if let fulfiller = self.fulfiller {
-            return fulfiller.fulfill(object, json: json)
-        }
-        
-        return object
-    }
-    
-    public func parse(json json: JSON) -> [Model]
+    open override func parse(_ data: Any) -> [Model]
     {
         var objects:[Model] = []
-        if let dictionary = json.dictionary {
-            if let object = parseObject(dictionary) {
+        if let dictionary = data as? [String : AnyObject] {
+            if let object = parseObject(JSON(dictionary)) {
                 objects.append(object)
             }
             
             for (_, keyData) in dictionary {
-                objects.appendContentsOf(parse(json: keyData))
+                objects.append(contentsOf: parse(keyData))
             }
-        } else if let array = json.array {
+        } else if let array = data as? [AnyObject] {
             for itemData in array {
-                objects.appendContentsOf(parse(json: itemData))
+                objects.append(contentsOf: parse(itemData))
             }
         }
         
         return objects
     }
+}
+
+
+/**
+ Экстеншн позволяет обращаться ко вложенным объектам.
+ Например: json["key1"]["key2"]["key3"]
+ */
+public extension Optional where Wrapped: JSON {
+    open subscript(_ key: String) -> JSON? {
+        get {
+            guard let json = self else { return nil }
+            guard let dictionary = json.value as? [String: AnyObject] else { return nil }
+            guard let result =  dictionary[key] else { return nil }
+            return JSON(result)
+        }
+    }
+}
+
+/**
+ Вспомогательный класс для преобразования из json.
+ */
+open class JSON {
     
-    internal func parse(dictionary dictionary: [String : AnyObject]) -> [Model]
+    let value: Any
+    
+    
+    // MARK: - Конструктор
+    
+    public init(_ value: Any)
     {
-        let json = JSON(dictionary)
-        return parse(json: json)
+        self.value = value
     }
     
+    
+    // MARK: - Операторы
+    
+    open subscript(_ key: String) -> JSON? {
+        get {
+            guard let dictionary = value as? [String: AnyObject] else { return nil }
+            guard let result =  dictionary[key] else { return nil }
+            return JSON(result)
+        }
+    }
+    
+    
+    // MARK: - Примитивные типы
+    
+    open var int: Int? { return asInt() }
+    open var float: Float? { return asFloat() }
+    open var double: Double? { return asDouble() }
+    open var bool: Bool? { return asBool() }
+    open var string: String? { return asString() }
+    
+    
+    // MARK: - Helper
+    
+    open func asInt() -> Int?
+    {
+        switch value {
+        case let number as NSNumber:
+            return number.intValue
+        case let string as String:
+            return Int(string)
+        default:
+            return nil
+        }
+    }
+    
+    open func asFloat() -> Float?
+    {
+        switch value {
+        case let number as NSNumber:
+            return number.floatValue
+        case let string as String:
+            return Float(string)
+        default:
+            return nil
+        }
+    }
+    
+    open func asDouble() -> Double?
+    {
+        switch value {
+        case let number as NSNumber:
+            return number.doubleValue
+        case let string as String:
+            return Double(string)
+        default:
+            return nil
+        }
+    }
+    
+    open func asBool() -> Bool?
+    {
+        switch value {
+        case let number as NSNumber:
+            return number.boolValue
+        default:
+            return nil
+        }
+    }
+    
+    open func asString() -> String?
+    {
+        switch value {
+        case let string as String:
+            return string
+        case let number as NSNumber:
+            return number.stringValue
+        default:
+            return nil
+        }
+    }
 }

@@ -9,13 +9,12 @@
 import Foundation
 
 
-public class Parser<Model> {
+open class Parser<Model> {
     
     // MARK: Abstract
     
-    /* abstract */ public func parse(body body: Any) -> [Model]
+    /* abstract */ open func parse(_ data: Any) -> [Model]
     {
         preconditionFailure("Необходимо переопределить метод Parser.parse()")
     }
-    
 }

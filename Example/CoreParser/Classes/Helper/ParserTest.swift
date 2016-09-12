@@ -14,22 +14,22 @@ class ParserTest {
     
     func run()
     {
-        let jsonData: NSData = loadJSON()
+        let jsonData = loadJSON()
         let parser = createParser()
         
         do {
-            let json = try NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! [String: AnyObject]
-            let objects = parser.parse(body: json)
+            let json = try JSONSerialization.jsonObject(with:jsonData, options: [])
+            let objects = parser.parse(json)
             print("Objects count: \(objects.count)")
         } catch let error as NSError {
             print("Failed to load: \(error.localizedDescription)")
         }
     }
     
-    func loadJSON() -> NSData
+    func loadJSON() -> Data
     {
-        let path = NSBundle.mainBundle().pathForResource("data", ofType: "json")
-        return NSData(contentsOfFile: path!)!
+        let path = Bundle.main.path(forResource: "data", ofType: "json")!
+        return try! Data(contentsOf: URL(fileURLWithPath: path))
     }
     
     func createParser() -> Parser<Account>
