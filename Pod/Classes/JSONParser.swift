@@ -104,6 +104,11 @@ open class JSON {
     
     // MARK: - Helper
     
+    open func raw() -> Any
+    {
+        return value
+    }
+    
     open func asInt() -> Int?
     {
         switch value {
