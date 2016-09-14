@@ -100,6 +100,8 @@ open class JSON {
     open var double: Double? { return asDouble() }
     open var bool: Bool? { return asBool() }
     open var string: String? { return asString() }
+    open var dictionary: [String: AnyObject]? { return asDictionary() }
+    open var array: [AnyObject]? { return asArray() }
     
     
     // MARK: - Helper
@@ -165,5 +167,15 @@ open class JSON {
         default:
             return nil
         }
+    }
+    
+    open func asDictionary() -> [String: AnyObject]?
+    {
+        return value as? [String: AnyObject]
+    }
+    
+    open func asArray() -> [AnyObject]?
+    {
+        return value as? [AnyObject]
     }
 }
