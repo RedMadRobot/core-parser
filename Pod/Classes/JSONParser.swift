@@ -29,6 +29,10 @@ open class JSONParser<Model>: Parser<Model> {
     
     // MARK: - Parser
     
+    open func parse(json data: JSON) -> [Model] {
+        return parse(data: data.raw())
+    }
+    
     open override func parse(_ data: Any) -> [Model]
     {
         var objects:[Model] = []
