@@ -105,7 +105,7 @@ open class JSON {
     open var bool: Bool? { return asBool() }
     open var string: String? { return asString() }
     open var dictionary: [String: AnyObject]? { return asDictionary() }
-    open var array: [AnyObject]? { return asArray() }
+    open var array: [Any]? { return asArray() }
     
     
     // MARK: - Helper
@@ -178,8 +178,8 @@ open class JSON {
         return value as? [String: AnyObject]
     }
     
-    open func asArray() -> [AnyObject]?
+    open func asArray() -> [Any]?
     {
-        return value as? [AnyObject]
+        return value as? [Any]
     }
 }
