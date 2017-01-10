@@ -39,10 +39,10 @@ open class JSONParser<Model>: Parser<Model> {
         if let dictionary = data as? [String : AnyObject] {
             if let object = parseObject(JSON(dictionary)) {
                 objects.append(object)
-            }
-            
-            for (_, keyData) in dictionary {
-                objects.append(contentsOf: parse(keyData))
+            } else {
+                for (_, keyData) in dictionary {
+                    objects.append(contentsOf: parse(keyData))
+                }
             }
         } else if let array = data as? [AnyObject] {
             for itemData in array {
