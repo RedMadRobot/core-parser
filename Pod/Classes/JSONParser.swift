@@ -246,6 +246,10 @@ open class JSON {
 public struct Fields {
     let mandatory: Set<String>
     let optional:  Set<String>
+    public init(mandatory: Set<String>, optional: Set<String>) {
+        self.mandatory = mandatory
+        self.optional  = optional
+    }
 }
 
 /**
