@@ -14,18 +14,30 @@ import Foundation
  */
 open class JSONParser<Model>: Parser<Model> {
     
+    fileprivate let logLevel: JSONParserLogLevel
+    
     // MARK: - Абстрактные методы
     
     /* abstract */ open func parseObject(_ data: JSON) -> Model?
     {
-        preconditionFailure("Необходимо переопределить метод Parser.parseObject()")
+        preconditionFailure("Необходимо переопределить метод JSONParser.parseObject()")
     }
     
+    /* abstract */ open class func modelFields() -> Fields {
+        preconditionFailure("Необходимо переопределить метод JSONParser.modelFields()")
+    }
     
     // MARK: - Конструктор
     
-    override public init() {}
+    override public init() {
+        self.logLevel = JSONParserLogLevel.Silent
+        super.init()
+    }
     
+    public init(logLevel: JSONParserLogLevel) {
+        self.logLevel = logLevel
+        super.init()
+    }
     
     // MARK: - Parser
     
@@ -52,8 +64,55 @@ open class JSONParser<Model>: Parser<Model> {
         
         return objects
     }
+    
+    open func printAbsentFields(in data: JSON) {
+        guard
+            !loggerIsSilent(),
+            let dataMap: [String: AnyObject] = data.asDictionary()
+        else {
+            return
+        }
+        
+        let expectedFields: Fields = type(of: self).modelFields()
+        let actualFields: Set<String> = Set(dataMap.keys)
+        
+        if actualFields.isDisjoint(with: expectedFields.mandatory) {
+            // NOTE: На текущем уровне вложенности JSON-объекта данных может не быть 
+            return
+        } else {
+            let absentMandatoryFields: Set<String> = self.absentFields(expectedFields: expectedFields.mandatory, data: dataMap)
+            let absentOptionalFields:  Set<String> = self.absentFields(expectedFields: expectedFields.optional, data: dataMap)
+            
+            if self.logLevel.rawValue >= JSONParserLogLevel.LogMandatoryFields.rawValue {
+                self.printFields(absentMandatoryFields, headMessage: "⛔️\(Model.self) MISSING MANDATORY FIELDS:", symbol: "– ")
+                if self.logLevel.rawValue >= JSONParserLogLevel.LogAllFields.rawValue {
+                    self.printFields(absentOptionalFields, headMessage: "⚠️\(Model.self) MISSING OPTIONAL FIELDS:", symbol: "– ")
+                }
+            }
+        }
+    }
+    
 }
 
+private extension JSONParser {
+    func loggerIsSilent() -> Bool {
+        return self.logLevel.rawValue <= JSONParserLogLevel.Silent.rawValue
+    }
+    
+    func absentFields(expectedFields: Set<String>, data: [String: AnyObject]) -> Set<String> {
+        return expectedFields.subtracting(Set(data.keys))
+    }
+    
+    func printFields(_ fields: Set<String>, headMessage: String, symbol: String) {
+        if fields.isEmpty {
+            return
+        }
+        print(headMessage)
+        for field in fields {
+            print(symbol + field)
+        }
+    }
+}
 
 /**
  Экстеншн позволяет обращаться ко вложенным объектам.
@@ -182,4 +241,25 @@ open class JSON {
     {
         return value as? [Any]
     }
+}
+
+/**
+ Коллекция обязательных и опциональных полей модельного объекта, который должен быть распознан.
+ */
+public struct Fields {
+    let mandatory: Set<String>
+    let optional:  Set<String>
+    public init(mandatory: Set<String>, optional: Set<String>) {
+        self.mandatory = mandatory
+        self.optional  = optional
+    }
+}
+
+/**
+ Уровень логирования для класса JSONParser.
+ */
+public enum JSONParserLogLevel: Int {
+    case Silent             = 0
+    case LogMandatoryFields = 1
+    case LogAllFields       = 2
 }
