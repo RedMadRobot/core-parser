@@ -84,9 +84,9 @@ open class JSONParser<Model>: Parser<Model> {
             let absentOptionalFields:  Set<String> = self.absentFields(expectedFields: expectedFields.optional, data: dataMap)
             
             if self.logLevel.rawValue >= JSONParserLogLevel.LogMandatoryFields.rawValue {
-                self.printFields(absentMandatoryFields, headMessage: "MISSING MANDATORY FIELDS:")
+                self.printFields(absentMandatoryFields, headMessage: "MISSING MANDATORY FIELDS:", symbol: "⛔️")
                 if self.logLevel.rawValue >= JSONParserLogLevel.LogAllFields.rawValue {
-                    self.printFields(absentOptionalFields, headMessage: "MISSING OPTIONAL FIELDS:")
+                    self.printFields(absentOptionalFields, headMessage: "MISSING OPTIONAL FIELDS:", symbol: "⚠️")
                 }
             }
         }
@@ -103,10 +103,10 @@ private extension JSONParser {
         return expectedFields.subtracting(Set(data.keys))
     }
     
-    func printFields(_ fields: Set<String>, headMessage: String) {
+    func printFields(_ fields: Set<String>, headMessage: String, symbol: String) {
         print(headMessage)
         for field in fields {
-            print(field)
+            print(symbol + field)
         }
     }
 }
