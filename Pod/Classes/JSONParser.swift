@@ -42,7 +42,7 @@ open class JSONParser<Model>: Parser<Model> {
     // MARK: - Parser
     
     open func parse(json data: JSON) -> [Model] {
-        return parse(data: data.raw())
+        return parse(json: data.raw() as! JSON)
     }
     
     open override func parse(_ data: Any) -> [Model]
