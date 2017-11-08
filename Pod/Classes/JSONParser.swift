@@ -119,7 +119,7 @@ private extension JSONParser {
  Например: json["key1"]["key2"]["key3"]
  */
 public extension Optional where Wrapped: JSON {
-    open subscript(_ key: String) -> JSON? {
+    public subscript(_ key: String) -> JSON? {
         get {
             guard let json = self else { return nil }
             guard let dictionary = json.value as? [String: AnyObject] else { return nil }
