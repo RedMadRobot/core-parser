@@ -60,7 +60,8 @@ Parser for user looks like this
 class UserParser: JSONParser<User> {
     
     override func parseObject(_ data: JSON) -> User? {
-	     // override this method only if you need logging
+
+	     // call this method only if you need logs
         printAbsentFields(in: data)
         
         // checking for mandatory fields
@@ -80,7 +81,7 @@ class UserParser: JSONParser<User> {
     }
     
     
-    // override this method only if you need logging
+    // override this method only if you need logs
     override class func modelFields() -> Fields {
         return Fields(
             mandatory: Set(["first_name", "last_name"]),
