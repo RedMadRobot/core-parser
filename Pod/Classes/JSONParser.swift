@@ -2,42 +2,46 @@
 //  JSONParser.swift
 //  Parser
 //
-//  Created by  Anton Poderechin on 31/01/16.
-//  Copyright © 2016 BrosJam. All rights reserved.
+//  Created by Anton Poderechin on 31/01/16.
+//  Copyright © 2016 RedMadRobot. All rights reserved.
 //
 
 import Foundation
 
 
 /**
- Реализация JSON парсера.
+    JSON parser implementation.
  */
 open class JSONParser<Model>: Parser<Model> {
     
     fileprivate let logLevel: JSONParserLogLevel
     
-    // MARK: - Абстрактные методы
+    // MARK: - Abstract methods
     
-    /* abstract */ open func parseObject(_ data: JSON) -> Model?
-    {
-        preconditionFailure("Необходимо переопределить метод JSONParser.parseObject()")
+    
+    /* abstract */ open func parseObject(_ data: JSON) -> Model? {
+        preconditionFailure("You need to override JSONParser.parseObject()")
     }
+    
     
     /* abstract */ open class func modelFields() -> Fields {
-        preconditionFailure("Необходимо переопределить метод JSONParser.modelFields()")
+        preconditionFailure("You need to override JSONParser.modelFields()")
     }
     
-    // MARK: - Конструктор
+    
+    // MARK: - Init
     
     override public init() {
-        self.logLevel = JSONParserLogLevel.Silent
+        self.logLevel = JSONParserLogLevel.silent
         super.init()
     }
+    
     
     public init(logLevel: JSONParserLogLevel) {
         self.logLevel = logLevel
         super.init()
     }
+    
     
     // MARK: - Parser
     
@@ -45,8 +49,8 @@ open class JSONParser<Model>: Parser<Model> {
         return parse(json: data.raw() as! JSON)
     }
     
-    open override func parse(_ data: Any) -> [Model]
-    {
+    
+    open override func parse(_ data: Any) -> [Model] {
         var objects:[Model] = []
         if let dictionary = data as? [String : AnyObject] {
             if let object = parseObject(JSON(dictionary)) {
@@ -65,6 +69,7 @@ open class JSONParser<Model>: Parser<Model> {
         return objects
     }
     
+    
     open func printAbsentFields(in data: JSON) {
         guard
             !loggerIsSilent(),
@@ -77,16 +82,25 @@ open class JSONParser<Model>: Parser<Model> {
         let actualFields: Set<String> = Set(dataMap.keys)
         
         if actualFields.isDisjoint(with: expectedFields.mandatory) {
-            // NOTE: На текущем уровне вложенности JSON-объекта данных может не быть 
             return
         } else {
-            let absentMandatoryFields: Set<String> = self.absentFields(expectedFields: expectedFields.mandatory, data: dataMap)
-            let absentOptionalFields:  Set<String> = self.absentFields(expectedFields: expectedFields.optional, data: dataMap)
+            let absentMandatoryFields: Set<String> = self.absentFields(
+                expectedFields: expectedFields.mandatory,
+                data: dataMap)
+            let absentOptionalFields:  Set<String> = self.absentFields(
+                expectedFields: expectedFields.optional,
+                data: dataMap)
             
-            if self.logLevel.rawValue >= JSONParserLogLevel.LogMandatoryFields.rawValue {
-                self.printFields(absentMandatoryFields, headMessage: "⛔️\(Model.self) MISSING MANDATORY FIELDS:", symbol: "– ")
-                if self.logLevel.rawValue >= JSONParserLogLevel.LogAllFields.rawValue {
-                    self.printFields(absentOptionalFields, headMessage: "⚠️\(Model.self) MISSING OPTIONAL FIELDS:", symbol: "– ")
+            if self.logLevel.rawValue >= JSONParserLogLevel.logMandatoryFields.rawValue {
+                self.printFields(
+                    absentMandatoryFields,
+                    headMessage: "⛔️\(Model.self) MISSING MANDATORY FIELDS:",
+                    symbol: "– ")
+                if self.logLevel.rawValue >= JSONParserLogLevel.logAllFields.rawValue {
+                    self.printFields(
+                        absentOptionalFields,
+                        headMessage: "⚠️\(Model.self) MISSING OPTIONAL FIELDS:",
+                        symbol: "– ")
                 }
             }
         }
@@ -94,14 +108,18 @@ open class JSONParser<Model>: Parser<Model> {
     
 }
 
+
 private extension JSONParser {
+    
     func loggerIsSilent() -> Bool {
-        return self.logLevel.rawValue <= JSONParserLogLevel.Silent.rawValue
+        return self.logLevel.rawValue <= JSONParserLogLevel.silent.rawValue
     }
+    
     
     func absentFields(expectedFields: Set<String>, data: [String: AnyObject]) -> Set<String> {
         return expectedFields.subtracting(Set(data.keys))
     }
+    
     
     func printFields(_ fields: Set<String>, headMessage: String, symbol: String) {
         if fields.isEmpty {
@@ -112,35 +130,36 @@ private extension JSONParser {
             print(symbol + field)
         }
     }
+    
 }
 
+
 /**
- Экстеншн позволяет обращаться ко вложенным объектам.
- Например: json["key1"]["key2"]["key3"]
+ Helper for nested objects
+ Example: json["key1"]["key2"]["key3"]
  */
 public extension Optional where Wrapped: JSON {
+    
     public subscript(_ key: String) -> JSON? {
-        get {
-            guard let json = self else { return nil }
-            guard let dictionary = json.value as? [String: AnyObject] else { return nil }
-            guard let result =  dictionary[key] else { return nil }
-            return JSON(result)
-        }
+        guard let json = self else { return nil }
+        guard let dictionary = json.value as? [String: AnyObject] else { return nil }
+        guard let result =  dictionary[key] else { return nil }
+        return JSON(result)
     }
+    
 }
 
 /**
- Вспомогательный класс для преобразования из json.
+    Helper class for transform from json.
  */
 open class JSON {
     
     let value: Any
     
     
-    // MARK: - Конструктор
+    // MARK: - Init
     
-    public init(_ value: Any)
-    {
+    public init(_ value: Any) {
         self.value = value
     }
     
@@ -148,15 +167,13 @@ open class JSON {
     // MARK: - Операторы
     
     open subscript(_ key: String) -> JSON? {
-        get {
-            guard let dictionary = value as? [String: AnyObject] else { return nil }
-            guard let result =  dictionary[key] else { return nil }
-            return JSON(result)
-        }
+        guard let dictionary = value as? [String: AnyObject] else { return nil }
+        guard let result =  dictionary[key] else { return nil }
+        return JSON(result)
     }
     
     
-    // MARK: - Примитивные типы
+    // MARK: - Primitive types
     
     open var int: Int? { return asInt() }
     open var float: Float? { return asFloat() }
@@ -169,13 +186,12 @@ open class JSON {
     
     // MARK: - Helper
     
-    open func raw() -> Any
-    {
+    open func raw() -> Any {
         return value
     }
     
-    open func asInt() -> Int?
-    {
+    
+    open func asInt() -> Int? {
         switch value {
         case let number as NSNumber:
             return number.intValue
@@ -186,8 +202,8 @@ open class JSON {
         }
     }
     
-    open func asFloat() -> Float?
-    {
+    
+    open func asFloat() -> Float? {
         switch value {
         case let number as NSNumber:
             return number.floatValue
@@ -198,8 +214,8 @@ open class JSON {
         }
     }
     
-    open func asDouble() -> Double?
-    {
+    
+    open func asDouble() -> Double? {
         switch value {
         case let number as NSNumber:
             return number.doubleValue
@@ -210,8 +226,8 @@ open class JSON {
         }
     }
     
-    open func asBool() -> Bool?
-    {
+    
+    open func asBool() -> Bool? {
         switch value {
         case let number as NSNumber:
             return number.boolValue
@@ -220,8 +236,8 @@ open class JSON {
         }
     }
     
-    open func asString() -> String?
-    {
+    
+    open func asString() -> String? {
         switch value {
         case let string as String:
             return string
@@ -232,19 +248,20 @@ open class JSON {
         }
     }
     
-    open func asDictionary() -> [String: AnyObject]?
-    {
+    
+    open func asDictionary() -> [String: AnyObject]? {
         return value as? [String: AnyObject]
     }
     
-    open func asArray() -> [Any]?
-    {
+    
+    open func asArray() -> [Any]? {
         return value as? [Any]
     }
+    
 }
 
 /**
- Коллекция обязательных и опциональных полей модельного объекта, который должен быть распознан.
+    Structure for mandatory and optional fields of model object.
  */
 public struct Fields {
     let mandatory: Set<String>
@@ -255,11 +272,12 @@ public struct Fields {
     }
 }
 
+
 /**
- Уровень логирования для класса JSONParser.
+    Log levels.
  */
 public enum JSONParserLogLevel: Int {
-    case Silent             = 0
-    case LogMandatoryFields = 1
-    case LogAllFields       = 2
+    case silent             = 0
+    case logMandatoryFields = 1
+    case logAllFields       = 2
 }

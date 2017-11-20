@@ -13,10 +13,20 @@
 		1985BDD01C70AD4F00746C66 /* AccountParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985BDCF1C70AD4F00746C66 /* AccountParser.swift */; };
 		1985BDD41C70AD6B00746C66 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985BDD21C70AD6B00746C66 /* Account.swift */; };
 		1985BDD51C70AD6B00746C66 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985BDD31C70AD6B00746C66 /* Model.swift */; };
-		1985BDDA1C70AE3000746C66 /* ParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985BDD91C70AE3000746C66 /* ParserTest.swift */; };
-		1985BDDC1C70B01A00746C66 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1985BDDB1C70B01A00746C66 /* data.json */; };
+		AA7386421FC2C25E0027DAA0 /* CoreParser_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7386411FC2C25E0027DAA0 /* CoreParser_ExampleTests.swift */; };
+		AA7386491FC2C4320027DAA0 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1985BDDB1C70B01A00746C66 /* data.json */; };
 		EF6B791D6B96ADCA1A12BCE8 /* Pods_CoreParser_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E758279413E097195E71D /* Pods_CoreParser_Example.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA7386441FC2C25E0027DAA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
+			remoteInfo = CoreParser_Example;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		10F090AD8F55878BDD86AC89 /* Pods-CoreParser_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreParser_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoreParser_Example/Pods-CoreParser_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -27,12 +37,14 @@
 		1985BDCF1C70AD4F00746C66 /* AccountParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountParser.swift; sourceTree = "<group>"; };
 		1985BDD21C70AD6B00746C66 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		1985BDD31C70AD6B00746C66 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		1985BDD91C70AE3000746C66 /* ParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserTest.swift; sourceTree = "<group>"; };
 		1985BDDB1C70B01A00746C66 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		203893982295B0F3D22EEFF9 /* Pods-CoreParser_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreParser_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreParser_Example/Pods-CoreParser_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* CoreParser_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreParser_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		819E758279413E097195E71D /* Pods_CoreParser_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreParser_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F68BC31923BA4625440476C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AA73863F1FC2C25E0027DAA0 /* CoreParser_ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreParser_ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA7386411FC2C25E0027DAA0 /* CoreParser_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreParser_ExampleTests.swift; sourceTree = "<group>"; };
+		AA7386431FC2C25E0027DAA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E588D0BD59B8FD366FE84137 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F4A5781367206A9F8C0D0DDA /* CoreParser.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CoreParser.podspec; path = ../CoreParser.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +58,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA73863C1FC2C25E0027DAA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -53,7 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				1985BDB91C70A58500746C66 /* Classes */,
-				1985BDBC1C70A58500746C66 /* Resources */,
 				1985BDBE1C70A58500746C66 /* Supporting Files */,
 			);
 			name = Example;
@@ -63,7 +81,6 @@
 		1985BDB91C70A58500746C66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1985BDD61C70AE0E00746C66 /* Helper */,
 				1985BDD11C70AD5B00746C66 /* Model */,
 				1985BDCE1C70ACFA00746C66 /* Parser */,
 				1985BDBA1C70A58500746C66 /* AppDelegate.swift */,
@@ -75,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				1985BDDB1C70B01A00746C66 /* data.json */,
-				1985BDBD1C70A58500746C66 /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -83,6 +99,7 @@
 		1985BDBE1C70A58500746C66 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1985BDBD1C70A58500746C66 /* Images.xcassets */,
 				1985BDBF1C70A58500746C66 /* Info.plist */,
 				1985BDC01C70A58500746C66 /* LaunchScreen.xib */,
 			);
@@ -104,14 +121,6 @@
 				1985BDD31C70AD6B00746C66 /* Model.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		1985BDD61C70AE0E00746C66 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				1985BDD91C70AE3000746C66 /* ParserTest.swift */,
-			);
-			path = Helper;
 			sourceTree = "<group>";
 		};
 		355D9799315344F19D89384B /* Frameworks */ = {
@@ -136,6 +145,7 @@
 			children = (
 				1985BDB81C70A58500746C66 /* Example */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
+				AA7386401FC2C25E0027DAA0 /* CoreParser_ExampleTests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				40A7558615C5B016B7602131 /* Pods */,
 				355D9799315344F19D89384B /* Frameworks */,
@@ -146,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD01AFB9204008FA782 /* CoreParser_Example.app */,
+				AA73863F1FC2C25E0027DAA0 /* CoreParser_ExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,6 +169,16 @@
 				E588D0BD59B8FD366FE84137 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		AA7386401FC2C25E0027DAA0 /* CoreParser_ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA7386411FC2C25E0027DAA0 /* CoreParser_ExampleTests.swift */,
+				AA7386431FC2C25E0027DAA0 /* Info.plist */,
+				1985BDBC1C70A58500746C66 /* Resources */,
+			);
+			path = CoreParser_ExampleTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,19 +204,42 @@
 			productReference = 607FACD01AFB9204008FA782 /* CoreParser_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AA73863E1FC2C25E0027DAA0 /* CoreParser_ExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA7386481FC2C25E0027DAA0 /* Build configuration list for PBXNativeTarget "CoreParser_ExampleTests" */;
+			buildPhases = (
+				AA73863B1FC2C25E0027DAA0 /* Sources */,
+				AA73863C1FC2C25E0027DAA0 /* Frameworks */,
+				AA73863D1FC2C25E0027DAA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA7386451FC2C25E0027DAA0 /* PBXTargetDependency */,
+			);
+			name = CoreParser_ExampleTests;
+			productName = CoreParser_ExampleTests;
+			productReference = AA73863F1FC2C25E0027DAA0 /* CoreParser_ExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0900;
+					};
+					AA73863E1FC2C25E0027DAA0 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
 			};
@@ -213,6 +257,7 @@
 			projectRoot = "";
 			targets = (
 				607FACCF1AFB9204008FA782 /* CoreParser_Example */,
+				AA73863E1FC2C25E0027DAA0 /* CoreParser_ExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -224,7 +269,14 @@
 			files = (
 				1985BDC61C70A58500746C66 /* LaunchScreen.xib in Resources */,
 				1985BDC41C70A58500746C66 /* Images.xcassets in Resources */,
-				1985BDDC1C70B01A00746C66 /* data.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA73863D1FC2C25E0027DAA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA7386491FC2C4320027DAA0 /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,13 +343,28 @@
 			files = (
 				1985BDD01C70AD4F00746C66 /* AccountParser.swift in Sources */,
 				1985BDC21C70A58500746C66 /* AppDelegate.swift in Sources */,
-				1985BDDA1C70AE3000746C66 /* ParserTest.swift in Sources */,
 				1985BDD41C70AD6B00746C66 /* Account.swift in Sources */,
 				1985BDD51C70AD6B00746C66 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA73863B1FC2C25E0027DAA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA7386421FC2C25E0027DAA0 /* CoreParser_ExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA7386451FC2C25E0027DAA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 607FACCF1AFB9204008FA782 /* CoreParser_Example */;
+			targetProxy = AA7386441FC2C25E0027DAA0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		607FACED1AFB9204008FA782 /* Debug */ = {
@@ -431,6 +498,54 @@
 			};
 			name = Release;
 		};
+		AA7386461FC2C25E0027DAA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CoreParser_ExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.CoreParser-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreParser_Example.app/CoreParser_Example";
+			};
+			name = Debug;
+		};
+		AA7386471FC2C25E0027DAA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CoreParser_ExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.CoreParser-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreParser_Example.app/CoreParser_Example";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -448,6 +563,15 @@
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
 				607FACF11AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA7386481FC2C25E0027DAA0 /* Build configuration list for PBXNativeTarget "CoreParser_ExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA7386461FC2C25E0027DAA0 /* Debug */,
+				AA7386471FC2C25E0027DAA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
