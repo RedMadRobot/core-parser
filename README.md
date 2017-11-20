@@ -1,17 +1,26 @@
 # CoreParser
 
-## Installation
+## Features
+* Recursive parse algorithm
+* Parse primitive types
+* Different log levels
 
-Для установки добавьте следующую строку в podfile
+## Installation
+Using cocoapods
 
 ```ruby
-pod 'CoreParser', :git => "git@git.redmadrobot.com:foundation-ios/Parser.git"
+pod 'CoreParser'
 ```
 
-## Author
+## Usage
 
- Anton Poderechin, ap@redmadrobot.com
+## Authors
+Ivan Vavilov, iv@redmadrobot.com
+Andrey Rozhkov, ar@redmadrobot.com
+
+## TODOs
+* Create and return error object
+* Log once for one object
 
 ## License
-
 CoreParser is available under the MIT license. See the LICENSE file for more info.

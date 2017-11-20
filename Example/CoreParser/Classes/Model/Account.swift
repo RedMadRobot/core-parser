@@ -26,5 +26,5 @@ class Account: Model {
     
     var internalName: String = ""
     
-    var isSmth = false
+    var isSomething = false
 }
