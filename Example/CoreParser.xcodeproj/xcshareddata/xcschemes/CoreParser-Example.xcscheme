@@ -53,6 +53,16 @@
                ReferencedContainer = "container:CoreParser.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AA73863E1FC2C25E0027DAA0"
+               BuildableName = "CoreParser_ExampleTests.xctest"
+               BlueprintName = "CoreParser_ExampleTests"
+               ReferencedContainer = "container:CoreParser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

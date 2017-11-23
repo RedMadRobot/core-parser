@@ -13,8 +13,7 @@ open class Parser<Model> {
     
     // MARK: Abstract
     
-    /* abstract */ open func parse(_ data: Any) -> [Model]
-    {
-        preconditionFailure("Необходимо переопределить метод Parser.parse()")
+    /* abstract */ open func parse(_ data: Any) -> [Model] {
+        preconditionFailure("You need to override Parser.parse()")
     }
 }

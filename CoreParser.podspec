@@ -11,10 +11,10 @@ Pod::Spec.new do |s|
   s.version          = "2.2.0"
   s.summary          = "CoreParser"
 
-  s.description      = "Библиотека распознавания серверной выдачи"
+  s.description      = "JSON Parser"
 
   s.license          = 'MIT'
-  s.author           = { "Anton Poderechin" => "ap@redmadrobot.com" }
+  s.author           = { "Ivan Vavilov" => "iv@redmadrobot.com" }
   s.source           = { :git => "git@git.redmadrobot.com:foundation-ios/Parser.git", :tag => s.version.to_s }
   s.homepage         = 'https://git.redmadrobot.com/foundation-ios/Parser'
 

@@ -3,14 +3,14 @@
 //  Parser
 //
 //  Created by  Anton Poderechin on 31/01/16.
-//  Copyright © 2016 BrosJam. All rights reserved.
+//  Copyright © 2016 RedMadRobot. All rights reserved.
 //
 
 import Foundation
 
 
 /**
- Сущность содержащая информацию об аккаунте пользователя.
+    Entity for user account
  */
 class Account: Model {
     
@@ -26,5 +26,5 @@ class Account: Model {
     
     var internalName: String = ""
     
-    var isSmth = false
+    var isSomething = false
 }
