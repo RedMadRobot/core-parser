@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "CoreParser"
-  s.version          = "2.2.0"
+  s.version          = "2.2.1"
   s.summary          = "CoreParser"
 
   s.description      = "JSON Parser"
