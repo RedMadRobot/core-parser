@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.license          = 'MIT'
   s.author           = { "Ivan Vavilov" => "iv@redmadrobot.com" }
-  s.source           = { :git => "git@git.redmadrobot.com:foundation-ios/Parser.git", :tag => s.version.to_s }
+  s.source           = { :git => "git@github.com:RedMadRobot/core-parser.git", :tag => s.version.to_s }
   s.homepage         = 'https://github.com/RedMadRobot/core-parser'
 
   s.platform     = :ios, '8.0'
