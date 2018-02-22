@@ -46,7 +46,7 @@ open class JSONParser<Model>: Parser<Model> {
     // MARK: - Parser
     
     open func parse(json data: JSON) -> [Model] {
-        return parse(json: data.raw() as! JSON)
+        return parse(data.raw())
     }
     
     
