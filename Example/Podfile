@@ -4,3 +4,8 @@ use_frameworks!
 target 'CoreParser_Example' do
   pod 'CoreParser', :path => '../'
 end
+
+
+target 'CoreParser_ExampleTests' do
+    pod 'CoreParser', :path => '../'
+end
