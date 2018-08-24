@@ -57,18 +57,18 @@ final class SimpleValueJsonParserTests: XCTestCase {
         let jsonString = "{\"data\":{\"value\": true}}"
         let json = getJsonFromString(jsonString)
         
-        let value = SimpleValueJsonParser<Bool>().parse(json).first
+        let value = SimpleValueJsonParser<Bool>().parse(json).first!
         
-        XCTAssertEqual(value, true)
+        XCTAssertTrue(value)
     }
     
     func testParseBool_false() {
         let jsonString = "{\"data\":{\"value\": false}}"
         let json = getJsonFromString(jsonString)
         
-        let value = SimpleValueJsonParser<Bool>().parse(json).first
+        let value = SimpleValueJsonParser<Bool>().parse(json).first!
         
-        XCTAssertEqual(value, false)
+        XCTAssertFalse(value)
     }
     
     func testParseString() {
