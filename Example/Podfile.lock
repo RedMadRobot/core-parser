@@ -1,16 +1,16 @@
 PODS:
-  - CoreParser (2.2.0)
+  - CoreParser (2.3.0)
 
 DEPENDENCIES:
   - CoreParser (from `../`)
 
 EXTERNAL SOURCES:
   CoreParser:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  CoreParser: 500812de21b073eb7f19db2c7cfb7394ac341498
+  CoreParser: 4b6be1f77343da9eab3c3aedff825b6b38170097
 
-PODFILE CHECKSUM: 1786a7add338aa83f77bd2a635a930504512e343
+PODFILE CHECKSUM: 900a522ec7a81bb423be7046d4f69ea884ca817e
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3
